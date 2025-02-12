@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+// Override Bootstrap variables before importing Bootstrap
+$primary: #007bff;
+$secondary: #6c757d;
+$success: #28a745;
+
+// Import Bootstrap with your custom settings
+@import "node_modules/bootstrap/scss/bootstrap";
+
+head,body{
+    padding: 0;
+    margin: 0;
+}

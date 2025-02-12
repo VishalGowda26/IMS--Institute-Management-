@@ -27,6 +27,7 @@ export class CreateStudentComponent {
       package: new FormControl(),
       offerDate: new FormControl(),
     }),
+    sourceType: new FormControl(),
   });
 
   get eduFormArray() {

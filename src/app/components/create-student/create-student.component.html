@@ -61,8 +61,18 @@
        <label class="form-label">Offer date:</label>
        <input type="date" class="form-control mb-3" formControlName="offerDate">
       </div>
-        <button type="submit" class="btn btn-outline-secondary" (click)="submit()">Submit</button>
 
+    <!-- NestedFrom  -->
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="sourceType" formControlName="sourceType" value="Direct"> Direct
+      </label>
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="sourceType" formControlName="sourceType" value="Refer"> Refer
+      </label>
+    </div>
+    
+    <button type="submit" class="btn btn-outline-secondary" (click)="submit()">Submit</button>
       
     </form>
 </section>

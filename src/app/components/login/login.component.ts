@@ -63,6 +63,7 @@ export class LoginComponent {
         this.token = data.token;
         sessionStorage.setItem('token', this.token);
         alert('login Successful!');
+        this._router.navigateByUrl('/dashboard')
         console.log(this.token);
       },
       (err: any) => {

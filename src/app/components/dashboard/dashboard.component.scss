@@ -1,0 +1,85 @@
+section {
+  height: 100vh;
+  width: 100vw;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.navbar {
+  height: 10%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 5fr; /* Adjust as needed */
+  align-items: center;
+  background-color: #333;
+  padding: 1%;
+}
+
+.logo {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  justify-content: end;
+  gap: 20px;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px 12px;
+  transition: 0.3s;
+}
+
+.menu a:hover {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .menu {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 10px;
+  }
+}
+.article_body {
+  height: 89%;
+  width: 100%;
+}
+.offcanvas {
+  background-color: #333;
+  width: 20%;
+  color: white;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+.btns {
+  background: none;
+  color: white;
+  height: 50%;
+  outline: 0;
+  border: 0;
+}
+.offcanvas-title {
+  border-bottom: 1px solid white;
+}
+.btn-close {
+  background-color: white;
+  font-size: 0.5rem;
+}
+.offcanvas-body a {
+  text-decoration: none;
+  display: flex;
+  padding: 2%;
+  color: white;
+}

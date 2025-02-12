@@ -8,6 +8,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CreateStudentComponent } from './components/create-student/create-student.component';
+import { AllStudentsComponent } from './components/all-students/all-students.component';
+import { DashboardDisplayComponent } from './components/dashboard-display/dashboard-display.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +18,9 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     DashboardComponent,
     PagenotfoundComponent,
+    CreateStudentComponent,
+    AllStudentsComponent,
+    DashboardDisplayComponent,
   ],
   imports: [
     BrowserModule,

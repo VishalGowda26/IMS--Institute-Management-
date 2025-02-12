@@ -1,0 +1,72 @@
+section {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.article-bottom {
+  padding: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dashboard Content Box - Sleek & Modern */
+.dashboard-main-content {
+  background: rgba(255, 255, 255, 0.15); /* Subtle glass effect */
+  backdrop-filter: blur(10px); /* Frosted effect */
+  padding: 25px 50px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  text-align: center;
+  max-width: 90%;
+  margin: 40px auto;
+  font-size: 30px;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+  /* Floating Effect */
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Minimalistic Underline Effect */
+.dashboard-main-content::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #007bff,
+    #00c6ff
+  ); /* Subtle professional gradient */
+  margin: 10px auto 0;
+  border-radius: 2px;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Hover Effect for Underline */
+.dashboard-main-content:hover::after {
+  width: 80px;
+}
+
+/* Smooth Text Appearance */
+.dashboard-main-content p {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

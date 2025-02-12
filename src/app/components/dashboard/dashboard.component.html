@@ -1,1 +1,35 @@
-<p>dashboard works!</p>
+<section>
+  <article class="article_nav">
+    <nav class="navbar">
+      <div class="logo">
+        <div class="offcanvas offcanvas-start" id="demo">
+          <div class="offcanvas-header">
+            <h1 class="offcanvas-title">Dashboard</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+          </div>
+          <div class="offcanvas-body">
+            <a routerLink="/dashboard/create-student">Create-Student</a>
+            <a routerLink="/dashboard/all-students">All-Students</a>
+          </div>
+        </div>
+        <button class="btns" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">          
+          <i class="bi bi-menu-down"></i> Explore
+        </button>
+      </div>
+      <div class="menu">
+        <a routerLink="/dashboard">Home</a>
+        <a routerLink="/dashboard">About</a>
+        <a routerLink="/dashboard">Services</a>
+        <a routerLink="/dashboard">Contact</a>
+        <button class="btn btn-outline-primary" (click)="logout()">
+          Logout
+        </button>
+      </div>
+    </nav>
+  </article>
+
+  <!--  -->
+  <article class="article_body">
+    <router-outlet></router-outlet>
+  </article>
+</section>

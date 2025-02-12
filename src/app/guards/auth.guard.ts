@@ -20,7 +20,6 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot):| Observable<boolean | UrlTree>| Promise<boolean | UrlTree>| boolean| UrlTree {
 
     if (sessionStorage.getItem('token')) {
-      this._router.navigateByUrl('/dashboard');
       return true;
     } else {
       alert('Pls login to visit this page');

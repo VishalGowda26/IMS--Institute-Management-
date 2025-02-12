@@ -21,6 +21,12 @@ export class CreateStudentComponent {
       pincode: new FormControl(),
     }),
     education: new FormArray([]),
+    company: new FormGroup({
+      name: new FormControl(),
+      location: new FormControl(),
+      package: new FormControl(),
+      offerDate: new FormControl(),
+    }),
   });
 
   get eduFormArray() {

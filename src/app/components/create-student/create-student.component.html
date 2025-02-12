@@ -24,6 +24,7 @@
             <label class="form-label">Batch:</label>
             <input type="date" class="form-control" placeholder="Enter Batch" formControlName="batch">
         </div>
+
         <!-- Nested Form -->
         <div formGroupName="address">
             <label class="form-label">City:</label>
@@ -37,6 +38,7 @@
             <label class="form-label ">Pincode:</label>
             <input type="number" class="form-control mb-3" placeholder="Enter Pincode" formControlName="pincode">
         </div>
+        
         <!-- FORM ARRAY -->
         <button class="btn btn-outline-info mb-3" type="button" (click)="addEducation()">Add Education</button>
           <div formArrayName="education">
@@ -47,6 +49,20 @@
               <button class="btn btn-danger btn-sm mb-3" type="button" (click)="removeEducation(i)">Remove</button>
             </div>
           </div>
+
+         <!-- Nested Form -->
+      <div formGroupName="company">
+       <label class="form-label">CompanyName:</label>
+       <input type="text" class="form-control" placeholder="Enter CompanyName" formControlName="name">
+       <label class="form-label">Company Location:</label>
+       <input type="text" class="form-control" placeholder="Enter Company Location" formControlName="location">
+       <label class="form-label">CTC:</label>
+       <input type="number" class="form-control" placeholder="Enter CTC" formControlName="package">
+       <label class="form-label">Offer date:</label>
+       <input type="date" class="form-control mb-3" formControlName="offerDate">
+      </div>
         <button type="submit" class="btn btn-outline-secondary" (click)="submit()">Submit</button>
+
+      
     </form>
 </section>

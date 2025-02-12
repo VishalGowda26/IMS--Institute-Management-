@@ -44,6 +44,7 @@
               <input type="text" class="form-control" formControlName="qualification" placeholder="Qualification">
               <input type="number" class="form-control" formControlName="year" placeholder="Year">
               <input type="number" class="form-control" formControlName="percentage" placeholder="Percentage">
+              <button class="btn btn-danger btn-sm mb-3" type="button" (click)="removeEducation(i)">Remove</button>
             </div>
           </div>
         <button type="submit" class="btn btn-outline-secondary" (click)="submit()">Submit</button>

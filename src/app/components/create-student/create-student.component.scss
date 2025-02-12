@@ -1,0 +1,17 @@
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .card {
+    margin-top: 2%;
+    width: 35%;
+    padding: 2%;
+    box-shadow: 0 0 10px  black;
+  }
+
+  .form-check{
+    display: flex;
+    gap: 20%;
+  }
+}
+

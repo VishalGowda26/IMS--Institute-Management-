@@ -33,7 +33,7 @@
     </div>
 
     <div class="flex">
-      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Submit</button>
+      <button class="btn btn-primary" [disabled]="loginForm.invalid" (click)="login()">Submit</button>
     </div>
   </form>
 </section>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -49,5 +50,14 @@ export class LoginComponent {
     } else {
       console.log('Form Invalid');
     }
+  }
+
+  constructor(private _loginService: LoginService) {}
+
+  login() {
+    this._loginService.login(this.loginForm.value).subscribe((data: any) => {
+      alert('login Successful!');
+      console.log(data);
+    });
   }
 }

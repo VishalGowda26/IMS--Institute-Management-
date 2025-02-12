@@ -28,6 +28,7 @@ export class CreateStudentComponent {
       offerDate: new FormControl(),
     }),
     sourceType: new FormControl(),
+    sourceForm: new FormControl(),
   });
 
   get eduFormArray() {
@@ -51,5 +52,18 @@ export class CreateStudentComponent {
 
   submit() {
     console.log('Student Details', this.studentForm.value);
+  }
+
+  constructor() {
+    this.studentForm.get('sourceType')?.valueChanges.subscribe((data: any) => {
+      if (data === 'Direct') {
+        this.studentForm.addControl('socialmedia', new FormControl(''));
+        this.studentForm.addControl('office', new FormControl());
+      } else if (data === 'Refer') {
+        this.studentForm.addControl('referralName', new FormControl());
+        this.studentForm.removeControl('socialmedia');
+        this.studentForm.removeControl('office');
+      }
+    });
   }
 }

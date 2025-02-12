@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -52,12 +53,22 @@ export class LoginComponent {
     }
   }
 
-  constructor(private _loginService: LoginService) {}
+  constructor(private _loginService: LoginService, private _router: Router) {}
+
+  token: string = '';
 
   login() {
-    this._loginService.login(this.loginForm.value).subscribe((data: any) => {
-      alert('login Successful!');
-      console.log(data);
-    });
+    this._loginService.login(this.loginForm.value).subscribe(
+      (data: any) => {
+        this.token = data.token;
+        sessionStorage.setItem('token', this.token);
+        alert('login Successful!');
+        this._router.navigateByUrl('/dashboard');
+        console.log(this.token);
+      },
+      (err: any) => {
+        alert('Invalid Credentials!');
+      }
+    );
   }
 }

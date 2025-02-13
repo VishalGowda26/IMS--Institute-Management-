@@ -10,7 +10,7 @@ export class AllStudentsComponent implements OnInit {
   students: any = [];
 
   constructor(private _studentService: StudentService) {}
-  
+
   ngOnInit(): void {
     this.getStudents();
   }
@@ -20,5 +20,39 @@ export class AllStudentsComponent implements OnInit {
       this.students = data;
       console.log('All-Students', this.students);
     });
+  }
+
+  limit: number = 0;
+  page: number = 0;
+
+  pagination() {
+    this._studentService
+      .getPagedStudents(this.limit, this.page)
+      .subscribe((data: any) => {
+        this.students = data;
+        console.log(this.students);
+      });
+  }
+
+  sort: string = '';
+  order: string = '';
+
+  sorting() {
+    this._studentService
+      .getSortedStudents(this.sort, this.order)
+      .subscribe((data: any) => {
+        this.students = data;
+        console.log(this.students);
+      });
+  }
+
+  word: string = '';
+  filter() {
+    this._studentService
+      .getFilteredStudents(this.word)
+      .subscribe((data: any) => {
+        this.students = data;
+        console.log(this.students);
+      });
   }
 }

@@ -1,4 +1,57 @@
 <section>
+  <article>
+    <div class="pagination">
+      <!-- Pagination -->
+      <select [(ngModel)]="limit" class="form-select form-select-sm" aria-label="Small select example" >
+        <option value="0" disabled selected>Select limit</option>
+        <option value="10">10 Records</option>
+        <option value="20">20 Records</option>
+        <option value="30">30 Records</option>
+      </select>
+      <select [(ngModel)]="page" class="form-select form-select-sm" aria-label="Small select example" >
+        <option value="0" disabled selected>Select Page</option>
+        <option value="1">Page 1</option>
+        <option value="2">Page 2</option>
+        <option value="3">Page 3</option>
+        <option value="4">Page 4</option>
+      </select>
+
+      <button class="btn btn-outline-success" (click)="pagination()">
+        Pagination
+      </button>
+    </div>
+
+    <div class="form-control filter">
+      <!-- Filter -->
+      <input type="text" placeholder="Search here" [(ngModel)]="word" (keyup)="filter()" />
+    </div>
+
+    <div class="pagination">
+      <!-- Pagination -->
+      <select [(ngModel)]="sort" class="form-select form-select-sm" aria-label="Small select example" >
+        <option value="" disabled selected>Select to Sort</option>
+        <option value="name">Name</option>
+        <option value="email">Email</option>
+        <option value="mobile">Mobile</option>
+        <option value="gender">Gender</option>
+        <option value="gender">City</option>
+      </select>
+      <select
+        [(ngModel)]="order"
+        class="form-select form-select-sm"
+        aria-label="Small select example"
+      >
+        <option value="" disabled selected>Sort Order</option>
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+      <button class="btn btn-outline-success" (click)="sorting()">
+        Sorting
+      </button>
+    </div>
+  </article>
+
+  <!-- Main Table -->
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -20,11 +73,11 @@
         <td>{{ student.email }}</td>
         <td>{{ student.mobile }}</td>
         <td>{{ student.gender }}</td>
-        <td>{{ student.batch }}</td>
+        <td>{{ student.batch | date : "yyyy-MMMM-dd" }}</td>
         <td>
-            <li><b>City:</b> {{ student?.address?.city }}</li>
-            <li><b>District:</b> {{student?.address?.district}}</li>
-            <li><b>State:</b> {{student?.address?.state}}</li>
+          <li><b>City:</b> {{ student?.address?.city }}</li>
+          <li><b>District:</b> {{ student?.address?.district }}</li>
+          <li><b>State:</b> {{ student?.address?.state }}</li>
         </td>
         <td>{{ student?.company?.name }}</td>
         <td>{{ student?.company?.package }}</td>

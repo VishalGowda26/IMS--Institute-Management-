@@ -1,12 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  AbstractControl,
-  FormArray,
-  FormControl,
-  FormGroup,
-  ValidationErrors,
-  Validators,
-} from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, ValidationErrors, Validators,} from '@angular/forms';
 import { StudentService } from 'src/app/services/student.service';
 
 @Component({
@@ -18,10 +11,7 @@ export class CreateStudentComponent {
   studentForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
     gender: new FormControl('', [Validators.required]),
-    mobile: new FormControl('', [
-      Validators.required,
-      Validators.min(1000000000),
-      Validators.max(9999999999),
+    mobile: new FormControl('', [ Validators.required, Validators.min(1000000000), Validators.max(9999999999),
     ]),
     email: new FormControl('', [Validators.required]),
     batch: new FormControl('', [Validators.required]),
@@ -30,11 +20,7 @@ export class CreateStudentComponent {
       mandal: new FormControl(),
       district: new FormControl('', [Validators.required]),
       state: new FormControl(),
-      pincode: new FormControl('', [
-        Validators.required,
-        Validators.min(100000),
-        Validators.max(999999),
-        noLeadingZero,
+      pincode: new FormControl('', [ Validators.required, Validators.min(100000), Validators.max(999999), noLeadingZero,
       ]),
     }),
     education: new FormArray([]),
@@ -45,7 +31,6 @@ export class CreateStudentComponent {
       offerDate: new FormControl(),
     }),
     sourceType: new FormControl(),
-    sourceForm: new FormControl(),
   });
 
   get eduFormArray() {
@@ -85,22 +70,36 @@ export class CreateStudentComponent {
 
   constructor(private _studentService: StudentService) {
     this.studentForm.get('sourceType')?.valueChanges.subscribe((data: any) => {
+      // Reset form by removing dynamic controls
+      this.studentForm.removeControl('sourceForm');
+      this.studentForm.removeControl('socialmedia');
+      this.studentForm.removeControl('office');
+      this.studentForm.removeControl('referralName');
+
       if (data === 'Direct') {
-        if (data === 'socialmedia') {
-          this.studentForm.addControl('socialmedia', new FormControl(''));
-          this.studentForm.removeControl('office');
-        } else if (data === 'office') {
-          this.studentForm.addControl('office', new FormControl());
-          this.studentForm.removeControl('socialmedia');
-        }
+        // Add sourceForm control for Direct type
+        this.studentForm.addControl('sourceForm', new FormControl());
+
+        // Listen to sourceForm changes
+        this.studentForm.get('sourceForm')?.valueChanges.subscribe((sourceData: any) => {
+            this.studentForm.removeControl('socialmedia');
+            this.studentForm.removeControl('office');
+
+            if (sourceData === 'socialmedia') {
+              this.studentForm.addControl('socialmedia', new FormControl(''));
+            } else if (sourceData === 'office') {
+              this.studentForm.addControl('office', new FormControl());
+            }
+          });
+
       } else if (data === 'Refer') {
+        // Add referralName only for Refer type
         this.studentForm.addControl('referralName', new FormControl());
-        this.studentForm.removeControl('socialmedia');
-        this.studentForm.removeControl('office');
       }
     });
   }
 }
+
 
 // Custom Validator Function to check if the first character is '0'
 function noLeadingZero(control: AbstractControl): ValidationErrors | null {

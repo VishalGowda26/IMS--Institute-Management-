@@ -27,6 +27,7 @@ import { DashboardDisplayComponent } from './components/dashboard-display/dashbo
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

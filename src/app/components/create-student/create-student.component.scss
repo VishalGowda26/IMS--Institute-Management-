@@ -1,0 +1,25 @@
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .card {
+    margin: 2%;
+    width: 35%;
+    padding: 2%;
+    box-shadow: 0 0 10px black;
+  }
+
+  .form-check {
+    display: flex;
+    gap: 20%;
+  }
+  
+  .error {
+    color: red;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+  input.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+}

@@ -1,1 +1,117 @@
-<p>create-student works!</p>
+<section>
+    <form class="card" [formGroup]="studentForm">
+        <div>
+          <label for="name" class="form-label">Name:</label>
+          <div class="error" *ngIf="studentForm.get('name')?.touched && studentForm.get('name')?.invalid">
+            <small *ngIf="studentForm.get('name')?.errors?.['required']">Name is required</small>
+          </div>
+          <input type="text" class="form-control" id="name" placeholder="Enter Name" formControlName="name">
+        </div>
+        <div>
+          <label for="email" class="form-label">Email:</label>
+          <div class="error" *ngIf="studentForm.get('email')?.touched && studentForm.get('email')?.invalid">
+            <small *ngIf="studentForm.get('email')?.errors?.['required']">Email is required</small>
+          </div>
+          <input type="email" class="form-control" id="email" placeholder="Enter Email" formControlName="email">
+        </div>
+        <div class="mb-3">
+          <label for="number" class="form-label">Mobile:</label>
+          <div class="error" *ngIf="studentForm.get('mobile')?.touched && studentForm.get('mobile')?.invalid">
+            <small *ngIf="studentForm.get('mobile')?.errors?.['required']">Mobile is required</small>
+            <small *ngIf="studentForm.get('mobile')?.errors?.['min']">min 10 digits only</small>
+            <small *ngIf="studentForm.get('mobile')?.errors?.['max']">Max 10 digits only</small>
+          </div>
+          <input type="number" class="form-control" placeholder="Enter Mobile" formControlName="mobile">
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="gender" formControlName="gender" value="male"> Male
+          </label>
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="gender" formControlName="gender" value="female"> Female
+          </label>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Batch:</label>
+            <input type="date" class="form-control" placeholder="Enter Batch" formControlName="batch">
+        </div>
+
+        <!-- Nested Form -->
+        <div formGroupName="address">
+            <label class="form-label">City:</label>
+            <input type="text" class="form-control" placeholder="Enter City" formControlName="city">
+            <label class="form-label">Mandal:</label>
+            <input type="text" class="form-control" placeholder="Enter Mandal" formControlName="mandal">
+            <label class="form-label">District:</label>
+            <div class="error" *ngIf="studentForm.get('address.district')?.touched && studentForm.get('address.district')?.invalid">
+              <small *ngIf="studentForm.get('address.district')?.errors?.['required']">District is required</small>
+            </div>
+            <input type="text" class="form-control" placeholder="Enter District" formControlName="district">
+            <label class="form-label">State:</label>
+            <input type="text" class="form-control" placeholder="Enter State" formControlName="state">
+            <label class="form-label ">Pincode:</label>
+            <div class="error" *ngIf="studentForm.get('address.pincode')?.touched && studentForm.get('address.pincode')?.invalid">
+              <small *ngIf="studentForm.get('address.pincode')?.errors?.['required']">Pincode is required</small>
+              <small *ngIf="studentForm.get('address.pincode')?.errors?.['leadingZero']">Pincode cannot start with 0</small>
+              <small *ngIf="studentForm.get('address.pincode')?.errors?.['min']">Pincode should have min 6 digits</small>
+              <small *ngIf="studentForm.get('address.pincode')?.errors?.['max']">Pincode should have max 6 digits</small>
+            </div>
+            <input type="number" class="form-control mb-3" placeholder="Enter Pincode" formControlName="pincode">
+        </div>
+        
+        <!-- FORM ARRAY -->
+        <button class="btn btn-outline-info mb-3" type="button" (click)="addEducation()">Add Education</button>
+          <div formArrayName="education">
+            <div *ngFor="let edu of eduFormArray.controls; let i = index" [formGroupName]="i" class="edu-entry">
+              <input type="text" class="form-control" formControlName="qualification" placeholder="Qualification">
+              <input type="number" class="form-control" formControlName="year" placeholder="Year">
+              <input type="number" class="form-control" formControlName="percentage" placeholder="Percentage">
+              <div class="error" *ngIf="edu.get('percentage')?.touched && edu.get('percentage')?.invalid">
+                <small *ngIf="edu.get('percentage')?.errors?.['required']">Percentage is required</small>
+                <small *ngIf="edu.get('percentage')?.errors?.['min']">Percentage should be min 0%</small>
+                <small *ngIf="edu.get('percentage')?.errors?.['max']">Percentage should be max 100%</small>
+              </div>
+              <button class="btn btn-danger btn-sm mb-3" type="button" (click)="removeEducation(i)">Remove</button>
+            </div>
+          </div>
+
+         <!-- Nested Form -->
+      <div formGroupName="company">
+       <label class="form-label">CompanyName:</label>
+       <input type="text" class="form-control" placeholder="Enter CompanyName" formControlName="name">
+       <label class="form-label">Company Location:</label>
+       <input type="text" class="form-control" placeholder="Enter Company Location" formControlName="location">
+       <label class="form-label">CTC:</label>
+       <input type="number" class="form-control" placeholder="Enter CTC" formControlName="package">
+       <label class="form-label">Offer date:</label>
+       <input type="date" class="form-control mb-3" formControlName="offerDate">
+      </div>
+
+    <!-- Dynamic form  -->
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="sourceType" formControlName="sourceType" value="Direct"> Direct
+      </label>
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="sourceType" formControlName="sourceType" value="Refer"> Refer
+      </label>
+    </div>
+
+    <div class="form-check" *ngIf="studentForm.get('sourceType')?.value=='Direct'">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="sourceForm" formControlName="sourceForm" value="socialmedia"> Social-Media
+      </label>
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="sourceForm" formControlName="sourceForm" value="office"> Office
+      </label>
+    </div>
+    <div class="form-check-label" *ngIf="studentForm.get('sourceType')?.value=='Refer'">
+      <label class="form-check-label">
+        <input class="form-control mb-3" type="text" placeholder="Referal Name" formControlName="referralName" > 
+      </label>
+    </div>
+    
+    <button type="submit" class="btn btn-outline-secondary" [disabled]="studentForm.invalid" (click)="submit()">Submit</button>
+      
+    </form>
+</section>

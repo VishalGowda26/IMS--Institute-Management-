@@ -22,11 +22,24 @@ export class AllStudentsComponent implements OnInit {
     });
   }
 
-  limit: string = '';
-  page: string = '';
+  limit: number = 0;
+  page: number = 0;
+
   pagination() {
     this._studentService
       .getPagedStudents(this.limit, this.page)
+      .subscribe((data: any) => {
+        this.students = data;
+        console.log(this.students);
+      });
+  }
+
+  sort: string = '';
+  order: string = '';
+
+  sorting() {
+    this._studentService
+      .getSortedStudents(this.sort, this.order)
       .subscribe((data: any) => {
         this.students = data;
         console.log(this.students);

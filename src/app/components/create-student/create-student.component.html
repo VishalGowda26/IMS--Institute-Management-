@@ -99,18 +99,20 @@
 
     <div class="form-check" *ngIf="studentForm.get('sourceType')?.value=='Direct'">
       <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="sourceForm" formControlName="sourceForm" value="socialmedia"> Social-Media
+        <input class="form-check-input" type="radio" name="sourceForm" formControlName="sourceForm" value="Social-Media"> Social-Media
       </label>
       <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="sourceForm" formControlName="sourceForm" value="office"> Office
+        <input class="form-check-input" type="radio" name="sourceForm" formControlName="sourceForm" value="Office"> Office
       </label>
     </div>
+    
     <div class="form-check-label" *ngIf="studentForm.get('sourceType')?.value=='Refer'">
       <label class="form-check-label">
         <input class="form-control mb-3" type="text" placeholder="Referal Name" formControlName="referralName" > 
       </label>
     </div>
     
-    <button type="submit" class="btn btn-outline-secondary" [disabled]="studentForm.invalid"  (click)="submit()">Submit</button>
+    <button type="submit" class="btn btn-outline-secondary" [disabled]="studentForm.invalid" (click)="submit()">Submit</button>
     </form>
+    
 </section>

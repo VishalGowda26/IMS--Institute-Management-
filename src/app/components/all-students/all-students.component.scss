@@ -7,7 +7,6 @@ section {
   article {
     width: 100%;
     padding: 1%;
-    gap: 10px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -18,7 +17,18 @@ section {
     .pagination {
       display: flex;
       gap: 10px;
-      border: 2px solid red;
+    }
+    .form-select {
+      width: 80%;
+    }
+    .filter {
+      width: 30%;
+      input {
+        width: 100%;
+        height: auto;
+        border: 0;
+        outline: 0;
+      }
     }
   }
 

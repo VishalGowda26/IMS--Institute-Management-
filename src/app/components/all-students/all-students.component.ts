@@ -45,4 +45,14 @@ export class AllStudentsComponent implements OnInit {
         console.log(this.students);
       });
   }
+
+  word: string = '';
+  filter() {
+    this._studentService
+      .getFilteredStudents(this.word)
+      .subscribe((data: any) => {
+        this.students = data;
+        console.log(this.students);
+      });
+  }
 }

@@ -1,4 +1,29 @@
 <section>
+  <article>
+    <div class="pagination">
+      <!-- Pagination -->
+      <select [(ngModel)]="limit">
+        <option value="" disabled selected>Select limit</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+      </select>
+      <select [(ngModel)]="page">
+        <option value="" disabled selected>Select Page</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+
+      <button class="btn btn-outline-success" (click)="pagination()">
+        Pagination
+      </button>
+    </div>
+    
+  </article>
+
+  <!-- Main Table -->
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -22,9 +47,9 @@
         <td>{{ student.gender }}</td>
         <td>{{ student.batch }}</td>
         <td>
-            <li><b>City:</b> {{ student?.address?.city }}</li>
-            <li><b>District:</b> {{student?.address?.district}}</li>
-            <li><b>State:</b> {{student?.address?.state}}</li>
+          <li><b>City:</b> {{ student?.address?.city }}</li>
+          <li><b>District:</b> {{ student?.address?.district }}</li>
+          <li><b>State:</b> {{ student?.address?.state }}</li>
         </td>
         <td>{{ student?.company?.name }}</td>
         <td>{{ student?.company?.package }}</td>

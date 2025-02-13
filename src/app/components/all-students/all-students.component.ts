@@ -10,7 +10,7 @@ export class AllStudentsComponent implements OnInit {
   students: any = [];
 
   constructor(private _studentService: StudentService) {}
-  
+
   ngOnInit(): void {
     this.getStudents();
   }
@@ -20,5 +20,16 @@ export class AllStudentsComponent implements OnInit {
       this.students = data;
       console.log('All-Students', this.students);
     });
+  }
+
+  limit: string = '';
+  page: string = '';
+  pagination() {
+    this._studentService
+      .getPagedStudents(this.limit, this.page)
+      .subscribe((data: any) => {
+        this.students = data;
+        console.log(this.students);
+      });
   }
 }

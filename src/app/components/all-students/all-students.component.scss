@@ -1,8 +1,25 @@
 section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  article {
+    width: 100%;
+    padding: 1%;
+    border: 2px solid;
+    gap: 10px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    td li{
-        list-style:none;
+    justify-content: space-evenly;
+
+    .pagination {
+      display: flex;
+      gap: 10px;
     }
+  }
+
+  td li {
+    list-style: none;
+  }
 }

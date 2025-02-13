@@ -2,14 +2,25 @@
     <form class="card" [formGroup]="studentForm">
         <div>
           <label for="name" class="form-label">Name:</label>
-          <input type="text" class="form-control" id="pwd" placeholder="Enter Name" formControlName="name">
+          <div class="error" *ngIf="studentForm.get('name')?.touched && studentForm.get('name')?.invalid">
+            <small *ngIf="studentForm.get('name')?.errors?.['required']">Name is required</small>
+          </div>
+          <input type="text" class="form-control" id="name" placeholder="Enter Name" formControlName="name">
         </div>
         <div>
           <label for="email" class="form-label">Email:</label>
+          <div class="error" *ngIf="studentForm.get('email')?.touched && studentForm.get('email')?.invalid">
+            <small *ngIf="studentForm.get('email')?.errors?.['required']">Email is required</small>
+          </div>
           <input type="email" class="form-control" id="email" placeholder="Enter Email" formControlName="email">
         </div>
         <div class="mb-3">
           <label for="number" class="form-label">Mobile:</label>
+          <div class="error" *ngIf="studentForm.get('mobile')?.touched && studentForm.get('mobile')?.invalid">
+            <small *ngIf="studentForm.get('mobile')?.errors?.['required']">Mobile is required</small>
+            <small *ngIf="studentForm.get('mobile')?.errors?.['min']">min 10 digits only</small>
+            <small *ngIf="studentForm.get('mobile')?.errors?.['max']">Max 10 digits only</small>
+          </div>
           <input type="number" class="form-control" placeholder="Enter Mobile" formControlName="mobile">
         </div>
         <div class="form-check">
@@ -32,10 +43,19 @@
             <label class="form-label">Mandal:</label>
             <input type="text" class="form-control" placeholder="Enter Mandal" formControlName="mandal">
             <label class="form-label">District:</label>
+            <div class="error" *ngIf="studentForm.get('address.district')?.touched && studentForm.get('address.district')?.invalid">
+              <small *ngIf="studentForm.get('address.district')?.errors?.['required']">District is required</small>
+            </div>
             <input type="text" class="form-control" placeholder="Enter District" formControlName="district">
             <label class="form-label">State:</label>
             <input type="text" class="form-control" placeholder="Enter State" formControlName="state">
             <label class="form-label ">Pincode:</label>
+            <div class="error" *ngIf="studentForm.get('address.pincode')?.touched && studentForm.get('address.pincode')?.invalid">
+              <small *ngIf="studentForm.get('address.pincode')?.errors?.['required']">Pincode is required</small>
+              <small *ngIf="studentForm.get('address.pincode')?.errors?.['leadingZero']">Pincode cannot start with 0</small>
+              <small *ngIf="studentForm.get('address.pincode')?.errors?.['min']">Pincode should have min 6 digits</small>
+              <small *ngIf="studentForm.get('address.pincode')?.errors?.['max']">Pincode should have max 6 digits</small>
+            </div>
             <input type="number" class="form-control mb-3" placeholder="Enter Pincode" formControlName="pincode">
         </div>
         
@@ -46,6 +66,11 @@
               <input type="text" class="form-control" formControlName="qualification" placeholder="Qualification">
               <input type="number" class="form-control" formControlName="year" placeholder="Year">
               <input type="number" class="form-control" formControlName="percentage" placeholder="Percentage">
+              <div class="error" *ngIf="edu.get('percentage')?.touched && edu.get('percentage')?.invalid">
+                <small *ngIf="edu.get('percentage')?.errors?.['required']">Percentage is required</small>
+                <small *ngIf="edu.get('percentage')?.errors?.['min']">Percentage should be min 0%</small>
+                <small *ngIf="edu.get('percentage')?.errors?.['max']">Percentage should be max 100%</small>
+              </div>
               <button class="btn btn-danger btn-sm mb-3" type="button" (click)="removeEducation(i)">Remove</button>
             </div>
           </div>
@@ -86,7 +111,7 @@
       </label>
     </div>
     
-    <button type="submit" class="btn btn-outline-secondary" (click)="submit()">Submit</button>
+    <button type="submit" class="btn btn-outline-secondary" [disabled]="studentForm.invalid" (click)="submit()">Submit</button>
       
     </form>
 </section>

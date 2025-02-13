@@ -13,4 +13,13 @@ section {
     display: flex;
     gap: 20%;
   }
+  
+  .error {
+    color: red;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+  input.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
 }

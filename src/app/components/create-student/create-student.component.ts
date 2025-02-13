@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, ValidationErrors, Validators,} from '@angular/forms';
 
 @Component({
   selector: 'app-create-student',
@@ -8,17 +8,19 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 })
 export class CreateStudentComponent {
   studentForm: FormGroup = new FormGroup({
-    name: new FormControl(),
-    gender: new FormControl(),
-    mobile: new FormControl(),
-    email: new FormControl(),
-    batch: new FormControl(),
+    name: new FormControl('', [Validators.required]),
+    gender: new FormControl('', [Validators.required]),
+    mobile: new FormControl('', [ Validators.required, Validators.min(1000000000), Validators.max(9999999999),]),
+    email: new FormControl('', [Validators.required]),
+    batch: new FormControl('', [Validators.required]),
     address: new FormGroup({
       city: new FormControl(),
       mandal: new FormControl(),
-      district: new FormControl(),
+      district: new FormControl('', [Validators.required]),
       state: new FormControl(),
-      pincode: new FormControl(),
+      pincode: new FormControl('', [ Validators.required, Validators.min(100000), Validators.max(999999), noLeadingZero,
+
+      ]),
     }),
     education: new FormArray([]),
     company: new FormGroup({
@@ -40,7 +42,11 @@ export class CreateStudentComponent {
       new FormGroup({
         qualification: new FormControl(),
         year: new FormControl(),
-        percentage: new FormControl(),
+        percentage: new FormControl('', [
+          Validators.required,
+          Validators.min(0),
+          Validators.max(100),
+        ]),
       })
     );
     this.eduFormArray.reset();
@@ -66,4 +72,14 @@ export class CreateStudentComponent {
       }
     });
   }
+
+}
+
+// Custom Validator Function to check if the first character is '0'
+function noLeadingZero(control: AbstractControl): ValidationErrors | null {
+  const value = control.value;
+  if (value && value[0] === '0') {
+    return { leadingZero: true }; // Return error if first character is '0'
+  }
+  return null; // Valid pincode
 }

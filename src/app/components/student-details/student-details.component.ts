@@ -8,7 +8,7 @@ import { StudentService } from 'src/app/services/student.service';
   styleUrls: ['./student-details.component.scss'],
 })
 export class StudentDetailsComponent {
-  student: any = [];
+  student: any;
 
   constructor(
     private _activatedRoute: ActivatedRoute,

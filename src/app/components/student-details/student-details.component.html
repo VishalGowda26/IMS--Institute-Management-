@@ -1,1 +1,36 @@
-<p>student-details works!</p>
+<section>
+  <article class="card">
+    <div class="heading">Student Details</div>
+    <hr />
+    <div class="mb-3">
+      <div><b>Name:</b> {{ student?.name }}</div>
+      <div><b>Email:</b> {{ student?.email }}</div>
+      <div><b>Mobile:</b> {{ student?.mobile }}</div>
+      <div><b>Gender:</b> {{ student?.gender }}</div>
+      <div><b>Batch:</b> {{ student?.batch }}</div>
+      <hr />
+      <div class="sub_heading mb-3">Education</div>
+      <ul *ngFor="let edu of student?.education">
+        <li><b>Qualification:</b>{{ edu?.qualification }}</li>
+        <li><b>Year:</b>{{ edu?.year }}</li>
+        <li><b>Percentage:</b>{{ edu?.percentage | percentage }}</li>
+      </ul>
+      <hr />
+      <div class="sub_heading mb-3">Address</div>
+      <div><b>City:</b> {{ student?.address?.city }}</div>
+      <div><b>Mandal:</b> {{ student?.address?.mandal }}</div>
+      <div><b>District:</b> {{ student?.address?.district }}</div>
+      <div><b>State:</b> {{ student?.address?.state }}</div>
+      <div><b>Pincode:</b> {{ student?.address?.pincode }}</div>
+      <hr />
+      <div class="sub_heading mb-3">Company</div>
+      <div><b>CompanyName:</b> {{ student?.company?.name }}</div>
+      <div><b>Location:</b> {{ student?.company?.location }}</div>
+      <div><b>Package:</b> {{ student?.company?.package | lpa }}</div>
+      <div><b>OfferDate:</b> {{ student?.company?.offerDate }}</div>
+      <div><b>SourceType:</b> {{ student?.sourceType }}</div>
+      <div><b>SourceFrom:</b> {{ student?.sourceFrom }}</div>
+      <div><b>ReferralName:</b> {{ student?.referralName }}</div>
+    </div>
+  </article>
+</section>

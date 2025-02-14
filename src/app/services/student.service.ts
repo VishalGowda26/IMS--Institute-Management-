@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Students } from '../models/students';
+import { Student } from '../models/student';
 
 @Injectable({
   providedIn: 'root',
@@ -37,5 +38,9 @@ export class StudentService {
 
   getStudent(id: number): Observable<any> {
     return this._httpClient.get(this.baseUrl + '/' + id);
+  }
+
+  updateStudent(id: number, payload: Student) {
+    return this._httpClient.put(this.baseUrl + '/' + id, payload);
   }
 }

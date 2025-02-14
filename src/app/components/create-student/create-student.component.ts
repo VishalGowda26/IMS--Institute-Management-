@@ -89,6 +89,7 @@ export class CreateStudentComponent implements OnInit {
   //   console.log('Student Details', this.studentForm.value);
   // }
 
+  id: number = 0;
   constructor(
     private _studentService: StudentService,
     private _router: Router,
@@ -98,6 +99,7 @@ export class CreateStudentComponent implements OnInit {
       console.log('Student id:', data.id);
       _studentService.getStudent(data.id).subscribe((data: any) => {
         console.log(data);
+        this.id = data.id;
         for (let edu of data.education) {
           this.addEducation();
         }
@@ -106,7 +108,6 @@ export class CreateStudentComponent implements OnInit {
     });
   }
 
-  id: number = 0;
   submit() {
     if (this.id) {
       this._studentService

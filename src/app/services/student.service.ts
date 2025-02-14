@@ -43,4 +43,8 @@ export class StudentService {
   updateStudent(id: number, payload: Student) {
     return this._httpClient.put(this.baseUrl + '/' + id, payload);
   }
+
+  deleteStudent(id: number) {
+    return this._httpClient.delete(this.baseUrl + '/' + id);
+  }
 }

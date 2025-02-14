@@ -21,6 +21,7 @@ const routes: Routes = [
       { path: 'create-student', component: CreateStudentComponent },
       { path: 'all-students', component: AllStudentsComponent },
       { path: 'student-details/:id', component: StudentDetailsComponent },
+      { path: 'edit-student/:id', component: CreateStudentComponent },
     ],
   },
   { path: '**', component: PagenotfoundComponent },

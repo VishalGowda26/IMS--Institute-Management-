@@ -12,6 +12,8 @@ import { CreateStudentComponent } from './components/create-student/create-stude
 import { AllStudentsComponent } from './components/all-students/all-students.component';
 import { DashboardDisplayComponent } from './components/dashboard-display/dashboard-display.component';
 import { StudentDetailsComponent } from './components/student-details/student-details.component';
+import { PercentagePipe } from './pipes/percentage.pipe';
+import { LpaPipe } from './pipes/lpa.pipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { StudentDetailsComponent } from './components/student-details/student-de
     AllStudentsComponent,
     DashboardDisplayComponent,
     StudentDetailsComponent,
+    PercentagePipe,
+    LpaPipe,
   ],
   imports: [
     BrowserModule,

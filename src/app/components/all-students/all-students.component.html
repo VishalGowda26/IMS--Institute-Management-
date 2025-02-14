@@ -82,7 +82,8 @@
         </td>
         <td>{{ student?.company?.name }}</td>
         <td>{{ student?.company?.package }}</td>
-        <td><button class="btn btn-warning" routerLink="/dashboard/student-details/{{student.id}}"><i class="bi bi-eye-fill"></i></button></td>
+        <td><button class="btn btn-success" routerLink="/dashboard/student-details/{{student.id}}"><i class="bi bi-eye-fill"></i></button></td>
+        <td><button class="btn btn-warning" routerLink="/dashboard/edit-student/{{student.id}}"><i class="bi bi-pencil-square"></i></button></td>
       </tr>
     </tbody>
   </table>

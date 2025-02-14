@@ -34,4 +34,8 @@ export class StudentService {
   getFilteredStudents(word: string): Observable<any> {
     return this._httpClient.get(this.baseUrl + '?filter=' + word);
   }
+
+  getStudent(id: number): Observable<any> {
+    return this._httpClient.get(this.baseUrl + '/' + id);
+  }
 }

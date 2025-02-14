@@ -64,6 +64,7 @@
         <th scope="col">Address</th>
         <th scope="col">Company Name</th>
         <th scope="col">Package</th>
+        <th scope="col" colspan="2">Actions</th>
       </tr>
     </thead>
     <tbody *ngFor="let student of students; let i = index">
@@ -81,6 +82,7 @@
         </td>
         <td>{{ student?.company?.name }}</td>
         <td>{{ student?.company?.package }}</td>
+        <td><button class="btn btn-warning" routerLink="/dashboard/student-details/{{student.id}}"><i class="bi bi-eye-fill"></i></button></td>
       </tr>
     </tbody>
   </table>

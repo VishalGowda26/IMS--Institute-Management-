@@ -7,6 +7,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { CreateStudentComponent } from './components/create-student/create-student.component';
 import { AllStudentsComponent } from './components/all-students/all-students.component';
 import { DashboardDisplayComponent } from './components/dashboard-display/dashboard-display.component';
+import { StudentDetailsComponent } from './components/student-details/student-details.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: '', component: DashboardDisplayComponent },
       { path: 'create-student', component: CreateStudentComponent },
       { path: 'all-students', component: AllStudentsComponent },
+      { path: 'student-details/:id', component: StudentDetailsComponent },
     ],
   },
   { path: '**', component: PagenotfoundComponent },

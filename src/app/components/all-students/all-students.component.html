@@ -81,9 +81,10 @@
           <li><b>State:</b> {{ student?.address?.state }}</li>
         </td>
         <td>{{ student?.company?.name }}</td>
-        <td>{{ student?.company?.package }}</td>
+        <td>{{ student?.company?.package | lpa }}</td>
         <td><button class="btn btn-success" routerLink="/dashboard/student-details/{{student.id}}"><i class="bi bi-eye-fill"></i></button></td>
         <td><button class="btn btn-warning" routerLink="/dashboard/edit-student/{{student.id}}"><i class="bi bi-pencil-square"></i></button></td>
+        <td><button class="btn btn-danger" (click)="deleteStudent(student.id)"><i class="bi bi-trash-fill"></i></button></td>
       </tr>
     </tbody>
   </table>

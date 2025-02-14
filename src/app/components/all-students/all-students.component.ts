@@ -55,4 +55,20 @@ export class AllStudentsComponent implements OnInit {
         console.log(this.students);
       });
   }
+
+  deleteStudent(id: number) {
+    if (confirm('Are you sure to delete this record!') == true) {
+      this._studentService.deleteStudent(id).subscribe(
+        (data: any) => {
+          alert('Student Record Deleted Successfully');
+          this.getStudents();
+        },
+        (err: any) => {
+          alert('Internal Server Error');
+        }
+      );
+    } else {
+      alert('You have Cancelled');
+    }
+  }
 }

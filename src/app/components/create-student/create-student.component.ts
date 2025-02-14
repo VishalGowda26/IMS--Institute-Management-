@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormArray,
@@ -7,6 +7,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from 'src/app/services/student.service';
 
 @Component({
@@ -14,7 +15,7 @@ import { StudentService } from 'src/app/services/student.service';
   templateUrl: './create-student.component.html',
   styleUrls: ['./create-student.component.scss'],
 })
-export class CreateStudentComponent {
+export class CreateStudentComponent implements OnInit {
   studentForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
     gender: new FormControl('', [Validators.required]),
@@ -69,32 +70,68 @@ export class CreateStudentComponent {
     this.eduFormArray.removeAt(index);
   }
 
-  // submit() {
-  //   console.log('Student Details', this.studentForm.value);
-  // }
-
-  submit() {
-    this._studentService
-      .createStudent(this.studentForm.value)
-      .subscribe((data: any) => {
-        alert('Student record successfully created!');
-        console.log('Student Details', this.studentForm.value);
-      });
-  }
-
-  constructor(private _studentService: StudentService) {
+  ngOnInit(): void {
     this.studentForm.get('sourceType')?.valueChanges.subscribe((data: any) => {
       // Reset dynamic fields
-      this.studentForm.removeControl('sourceForm');
+      this.studentForm.removeControl('sourceFrom');
       this.studentForm.removeControl('referralName');
 
       if (data === 'Direct') {
         // `sourceForm` stores only "socialmedia" or "office"
-        this.studentForm.addControl('sourceForm', new FormControl());
+        this.studentForm.addControl('sourceFrom', new FormControl());
       } else if (data === 'Refer') {
         this.studentForm.addControl('referralName', new FormControl());
       }
     });
+  }
+
+  // submit() {
+  //   console.log('Student Details', this.studentForm.value);
+  // }
+
+  constructor(
+    private _studentService: StudentService,
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute
+  ) {
+    _activatedRoute.params.subscribe((data: any) => {
+      console.log('Student id:', data.id);
+      _studentService.getStudent(data.id).subscribe((data: any) => {
+        console.log(data);
+        for (let edu of data.education) {
+          this.addEducation();
+        }
+        this.studentForm.patchValue(data);
+      });
+    });
+  }
+
+  id: number = 0;
+  submit() {
+    if (this.id) {
+      this._studentService
+        .updateStudent(this.id, this.studentForm.value)
+        .subscribe(
+          (data: any) => {
+            alert('Student Record Updated Successfully!');
+            this._router.navigateByUrl('/dashboard/all-students');
+          },
+          (err: any) => {
+            alert('Internal Server Error');
+          }
+        );
+    } else {
+      this._studentService.createStudent(this.studentForm.value).subscribe(
+        (data: any) => {
+          alert('Student record successfully created!');
+          console.log('Student Details', this.studentForm.value);
+          this._router.navigateByUrl('/dashboard/all-students');
+        },
+        (err: any) => {
+          alert('Internal Server Error');
+        }
+      );
+    }
   }
 }
 

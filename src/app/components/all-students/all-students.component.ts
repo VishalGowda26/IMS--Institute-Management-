@@ -71,4 +71,16 @@ export class AllStudentsComponent implements OnInit {
       alert('You have Cancelled');
     }
   }
+
+  percVary() {
+    if (this.students.company.package <= 9) {
+      {
+        color: 'red';
+      }
+    } else {
+      {
+        color: 'green';
+      }
+    }
+  }
 }

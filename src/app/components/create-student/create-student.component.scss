@@ -2,18 +2,53 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  margin: 1%;
+
+  span {
+    font-size: 35px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: black;
+    text-shadow: 5px 8px 5px sandybrown;
+    position: sticky;
+    top: 5%;
+    margin-bottom: 2%;
+    z-index: 1;
+  }
   .card {
-    margin: 2%;
-    width: 35%;
+    margin: 5%;
+    width: 45%;
     padding: 2%;
     box-shadow: 0 0 10px black;
+    transform: scale(0);
+    animation: detail_card 2s ease-out forwards;
+  }
+
+  @keyframes detail_card {
+    0% {
+      opacity: 0;
+      transform: scale(0); /* Start small */
+    }
+    50% {
+      opacity: 0.5; /* Half transparency */
+      transform: scale(1.05); /* Slightly zoom in */
+    }
+    100% {
+      opacity: 1; /* Full opacity */
+      transform: scale(1); /* End at normal size */
+    }
+  }
+  .card:hover {
+    transform: scale(1.1); /* Zoom slightly on hover */
+    box-shadow: 0 0 12px sandybrown; /* Add shadow for effect */
   }
 
   .form-check {
     display: flex;
     gap: 20%;
   }
-  
+
   .error {
     color: red;
     font-size: 12px;
@@ -22,4 +57,24 @@ section {
   input.ng-invalid.ng-touched {
     border: 1px solid red;
   }
+}
+
+.heading {
+  height: 10%;
+  width: 100%;
+  background-color: white;
+  padding: 1%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: fixed;
+  z-index: 1;
+  top: 10%;
+  padding-top: 3%;
+}
+.fixed_btn{
+  position: fixed;
+  left: 25%;
+  top: 11%;
 }

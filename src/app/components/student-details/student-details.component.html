@@ -11,13 +11,24 @@
       <div><b>Batch:</b> {{ student?.batch }}</div>
       <hr />
       <div class="sub_heading mb-3">Education Information</div>
-      <ul *ngFor="let edu of student?.education">
-        <li><b>Qualification:</b>{{ edu?.qualification }}</li>
-        <li><b>Year:</b>{{ edu?.year }}</li>
-        <li [ngStyle]="{ color: edu?.percentage > 60 ? 'green' : 'red' }">
-          <b>Percentage:</b>{{ edu?.percentage | percentage }}
-        </li>
-      </ul>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Qualification</th>
+            <th>Year</th>
+            <th>Percentage</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let edu of student.education">
+          <tr>
+            <td>{{ edu?.qualification }}</td>
+            <td>{{ edu?.year }}</td>
+            <td [ngStyle]="{ color: edu.percentage < 60 ? 'red' : 'green' }">
+              {{ edu?.percentage | percentage }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <hr />
       <div class="sub_heading mb-3">Address Information</div>
       <div><b>City:</b> {{ student?.address?.city }}</div>

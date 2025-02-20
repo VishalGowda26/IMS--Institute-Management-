@@ -1,4 +1,11 @@
 <section>
+<div class="heading">
+  <span *ngIf="!id">Create Student</span>
+  <div class="fixed_btn">
+    <button class="btn btn-primary btn-lg" (click)="onBackClick()">Back</button>
+  </div>
+  <span *ngIf="id">Update Student</span>
+</div>
     <form class="card" [formGroup]="studentForm">
         <div>
           <label for="name" class="form-label">Name:</label>

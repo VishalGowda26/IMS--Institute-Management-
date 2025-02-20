@@ -9,8 +9,10 @@ import { Router } from '@angular/router';
 export class DashboardComponent {
   constructor(private _router: Router) {}
   logout() {
-    sessionStorage.removeItem('token');
-    alert('Logout Successfully!');
-    this._router.navigateByUrl('/login');
+    if (confirm('Are you sure to Logout?')) {
+      sessionStorage.removeItem('token');
+      alert('🙄 Come Back Soon!');
+      this._router.navigateByUrl('/login');
+    } 
   }
 }

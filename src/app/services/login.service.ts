@@ -12,4 +12,8 @@ export class LoginService {
   login(payload: Student): Observable<any> {
     return this._httpClient.post('https://reqres.in/api/login', payload);
   }
+
+  getUSer() {
+    return this._httpClient.get('https://reqres.in/api/login');
+  }
 }

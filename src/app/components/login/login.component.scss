@@ -4,7 +4,23 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  position: relative;
+  gap: 5%;
 
+  .my_logo {
+    position: fixed;
+    height: 5%;
+    right: 35%;
+    top: 24%;
+    z-index: 1;
+    // border: 2px solid red;
+    
+    img {
+      border-radius: 20%;
+    }
+ 
+  }
   form {
     width: 30%;
     height: auto;
@@ -22,13 +38,21 @@ section {
   .btn-hide {
     outline: 0;
     border: 0;
+    height: 100%;
     background: none;
     position: absolute;
     right: 10px;
-    top: 8px;
+    z-index: 10;
   }
   .btn {
     width: 60%;
     text-align: center;
   }
+}
+.my_brand{
+  position: fixed;
+  right: 5%;
+  bottom: 0;
+  height: 30%;
+  z-index: -1;
 }

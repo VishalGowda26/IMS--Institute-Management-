@@ -16,6 +16,7 @@ export class StudentDetailsComponent {
   ) {
     _activatedRoute.params.subscribe((data: any) => {
       console.log('Student id:', data.id);
+      console.log(this.student?.company?.package);
       this._studentService.getStudent(data.id).subscribe((data: any) => {
         this.student = data;
         console.log('Student details:', this.student);

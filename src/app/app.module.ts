@@ -14,6 +14,7 @@ import { DashboardDisplayComponent } from './components/dashboard-display/dashbo
 import { StudentDetailsComponent } from './components/student-details/student-details.component';
 import { PercentagePipe } from './pipes/percentage.pipe';
 import { LpaPipe } from './pipes/lpa.pipe';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { LpaPipe } from './pipes/lpa.pipe';
     StudentDetailsComponent,
     PercentagePipe,
     LpaPipe,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

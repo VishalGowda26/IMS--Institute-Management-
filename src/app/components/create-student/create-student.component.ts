@@ -108,12 +108,18 @@ export class CreateStudentComponent implements OnInit {
     });
   }
 
+  onBackClick(): void {
+    this._router.navigateByUrl('/dashboard/all-students');
+  }
+  
+  isSubmitting: boolean = false;
   submit() {
     if (this.id) {
+      this.isSubmitting = true;
       this._studentService
-        .updateStudent(this.id, this.studentForm.value)
-        .subscribe(
-          (data: any) => {
+      .updateStudent(this.id, this.studentForm.value)
+      .subscribe(
+        (data: any) => {
             alert('Student Record Updated Successfully!');
             this._router.navigateByUrl('/dashboard/all-students');
           },
@@ -122,6 +128,7 @@ export class CreateStudentComponent implements OnInit {
           }
         );
     } else {
+      this.isSubmitting = true;
       this._studentService.createStudent(this.studentForm.value).subscribe(
         (data: any) => {
           alert('Student record successfully created!');
